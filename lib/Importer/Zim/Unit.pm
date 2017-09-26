@@ -1,6 +1,8 @@
 
 package Importer::Zim::Unit;
 
+# ABSTRACT: Import functions during compilation
+
 use 5.010001;
 
 BEGIN {
@@ -37,10 +39,6 @@ sub import {
 1;
 
 =encoding utf8
-
-=head1 NAME
-
-Importer::Zim::Unit - Import functions during compilation
 
 =head1 SYNOPSIS
 

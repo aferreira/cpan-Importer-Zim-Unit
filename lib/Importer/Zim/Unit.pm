@@ -1,7 +1,7 @@
 
 package Importer::Zim::Unit;
 
-# ABSTRACT: Import functions during compilation
+# ABSTRACT: Import functions with compilation unit scope
 
 use 5.010001;
 
@@ -91,7 +91,7 @@ That means:
 
 =item *
 
-Imported subroutines are installed at compile time.
+Imported subroutines are installed into the caller namespace at compile time.
 
 =item *
 

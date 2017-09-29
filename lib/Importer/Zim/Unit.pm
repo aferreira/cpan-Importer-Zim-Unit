@@ -14,7 +14,7 @@ BEGIN {
 use Devel::Hook  ();
 use Sub::Replace ();
 
-use constant DEBUG => $ENV{IMPORTER_ZIM_DEBUG} || 0;
+use Importer::Zim::Utils 0.8.0 qw(DEBUG);
 
 sub import {
     my $class = shift;
@@ -35,6 +35,8 @@ sub import {
         }
     ) if %$old;
 }
+
+no Importer::Zim::Utils qw(DEBUG);
 
 1;
 

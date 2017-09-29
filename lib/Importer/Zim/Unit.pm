@@ -14,12 +14,12 @@ BEGIN {
 use Devel::Hook  ();
 use Sub::Replace ();
 
-use Importer::Zim::Utils 0.8.0 qw(DEBUG);
+use Importer::Zim::Utils 0.8.0 qw(DEBUG carp);
 
 sub import {
     my $class = shift;
 
-    warn "$class->import(@_)\n" if DEBUG;
+    carp "$class->import(@_)" if DEBUG;
     my @exports = $class->_prepare_args(@_);
 
     my $caller = caller;
@@ -29,14 +29,14 @@ sub import {
     # Clean it up after compilation
     Devel::Hook->unshift_UNITCHECK_hook(
         sub {
-            warn qq{Restoring @{[map qq{"$_"}, sort keys %$old]}\n}
+            warn qq{  Restoring @{[map qq{"$_"}, sort keys %$old]}\n}
               if DEBUG;
             Sub::Replace::sub_replace($old);
         }
     ) if %$old;
 }
 
-no Importer::Zim::Utils qw(DEBUG);
+no Importer::Zim::Utils qw(DEBUG carp);
 
 1;
 

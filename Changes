@@ -3,6 +3,8 @@ Release history for Importer-Zim-Unit
 
 {{$NEXT}}
 
+    - Separate export_to()
+
 v0.3     2017-09-29 11:35:21-07:00 America/Los_Angeles
 
     - Produce DEBUG message with carp()

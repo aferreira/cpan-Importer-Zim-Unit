@@ -23,8 +23,20 @@ sub import {
     my @exports = $class->_prepare_args(@_);
 
     my $caller = caller;
-    my $old    = Sub::Replace::sub_replace(
-        map { ; "${caller}::$_->{export}" => $_->{code} } @exports );
+    return _export_to(    #
+        map { ; "${caller}::$_->{export}" => $_->{code} } @exports
+    );
+}
+
+sub export_to {
+    my $t = shift;
+    @_ = %{ $_[0] } if @_ == 1 && ref $_[0] eq 'HASH';
+    @_ = map { $_ & 1 ? $_[$_] : "${t}::$_[$_]" } 0 .. $#_;
+    goto &_export_to;
+}
+
+sub _export_to {
+    my $old = Sub::Replace::sub_replace(@_);
 
     # Clean it up after compilation
     Devel::Hook->unshift_UNITCHECK_hook(

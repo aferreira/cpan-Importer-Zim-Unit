@@ -5,27 +5,15 @@ package Importer::Zim::Unit;
 
 use 5.010001;
 
-BEGIN {
-    require Importer::Zim::Base;
-    Importer::Zim::Base->VERSION('0.8.0');
-    our @ISA = qw(Importer::Zim::Base);
-}
-
 use Devel::Hook  ();
 use Sub::Replace ();
 
-use Importer::Zim::Utils 0.8.0 qw(DEBUG carp);
+use Importer::Zim::Utils 0.8.0 qw(DEBUG );
 
 sub import {
-    my $class = shift;
-
-    carp "$class->import(@_)" if DEBUG;
-    my @exports = $class->_prepare_args(@_);
-
-    my $caller = caller;
-    return _export_to(    #
-        map { ; "${caller}::$_->{export}" => $_->{code} } @exports
-    );
+    require Importer::Zim::Base;
+    Importer::Zim::Base->VERSION('0.12.0');
+    goto &Importer::Zim::Base::import_into;
 }
 
 sub export_to {
@@ -48,7 +36,7 @@ sub _export_to {
     ) if %$old;
 }
 
-no Importer::Zim::Utils qw(DEBUG carp);
+no Importer::Zim::Utils qw(DEBUG );
 
 1;
 

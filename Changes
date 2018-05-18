@@ -3,6 +3,10 @@ Release history for Importer-Zim-Unit
 
 {{$NEXT}}
 
+v0.6     2018-05-18 09:41:23-07:00 America/Los_Angeles
+
+    - Require Sub::Replace 0.2.0+ - fixes cleanup step
+
 v0.5     2017-11-09 11:34:44-08:00 America/Los_Angeles
 
     - Lift dependency on Importer::Zim::Base to runtime

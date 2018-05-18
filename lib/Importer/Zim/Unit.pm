@@ -5,8 +5,8 @@ package Importer::Zim::Unit;
 
 use 5.010001;
 
-use Devel::Hook  ();
-use Sub::Replace ();
+use Devel::Hook ();
+use Sub::Replace 0.2.0 ();
 
 use Importer::Zim::Utils 0.8.0 qw(DEBUG );
 
